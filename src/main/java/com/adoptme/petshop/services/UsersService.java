@@ -18,7 +18,7 @@ public class UsersService {
     }
 
     public List<User> readAll(){
-        return repository.findAll()
+        return repository.findAll();
     }
 
     public Optional<User> readOne(Long id){

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsersService {
+public class PetsService {
     @Autowired
     private PetsRepository repository;
 
@@ -18,7 +18,7 @@ public class UsersService {
     }
 
     public List<Pet> readAll(){
-        return repository.findAll()
+        return repository.findAll();
     }
 
     public Optional<Pet> readOne(Long id){
