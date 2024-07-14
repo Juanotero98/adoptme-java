@@ -21,11 +21,11 @@ public class UsersService {
         return repository.findAll();
     }
 
-    public Optional<User> readOne(Long id){
+    public Optional<User> findById(Long id){
         return repository.findById(id);
     }
 
-    public void destroyOne(Long id){
+    public void deleteById(Long id) {
         repository.deleteById(id);
     }
 

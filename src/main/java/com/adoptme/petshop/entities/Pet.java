@@ -17,7 +17,7 @@ public class Pet {
 
     @Getter @Setter private String name;
 
-    @Getter @Setter private String specie;
+    @Getter @Setter private Integer age;
 
     @ManyToOne @JoinColumn(name = "owner_id")
     @Getter @Setter private User owner;
