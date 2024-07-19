@@ -12,7 +12,6 @@ public class User {
     @Getter @Setter private Long id;
 
     @Getter @Setter private String name;
-
     @Getter @Setter private String email;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -4,6 +4,10 @@ import com.adoptme.petshop.entities.Pet;
 import com.adoptme.petshop.entities.User;
 import com.adoptme.petshop.services.PetsService;
 import com.adoptme.petshop.services.UsersService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,14 +15,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
-@RequestMapping("api/pets")
+@RequestMapping("api/V1/pets")
+@Tag(name = "Rutas de mascotas", description = " CRUD de mascotas")
 public class PetsController {
 
     @Autowired private PetsService service;
     @Autowired private UsersService usersService;
 
     @PostMapping
+    @Operation (summary = "Crear una mascota", description = "Necesita que le pase un objeto con los datos de la mascota y devuelve la mascota creada")
     public ResponseEntity<Pet> createPet(@RequestBody Pet pet) {
         try {
             return new ResponseEntity<>(service.save(pet), HttpStatus.CREATED);
@@ -29,6 +36,7 @@ public class PetsController {
     }
 
     @GetMapping
+    @Operation (summary = "leer todas las mascotas", description = "Devuelve todas las mascotas de la base de datos. Seria interesante realizar consulta y filtros")
     public ResponseEntity<List<Pet>> getAllPets() {
         try {
             List<Pet> pets = service.findAll();
@@ -44,6 +52,12 @@ public class PetsController {
     }
 
     @GetMapping("/{id}")
+    @Operation (summary = "Lee la mascota con id indicado", description = "Devuelve la mascota que tiene ese id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Devuelve correctamente la mascota encontrada"),
+            @ApiResponse(responseCode = "404", description = "No devuelve nada!"),
+            @ApiResponse(responseCode = "500", description = "Servidor caido por probelmas diversos")
+    })
     public ResponseEntity<Object> getPetById(@PathVariable Long id) {
         try {
             Optional<Pet> pet = service.findById(id);

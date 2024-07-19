@@ -2,6 +2,7 @@ package com.adoptme.petshop.controllers;
 
 import com.adoptme.petshop.entities.User;
 import com.adoptme.petshop.services.ExternalUser;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util .*;
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("api/ext/users")
+@Tag(name = "Rutas de usuarios externos", description = " CRUD de usuarios de la API de JSONplaceholder")
 public class ExternalsController {
 
     @Autowired private ExternalUser service;
